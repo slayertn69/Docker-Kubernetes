@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  client:
+    build:
+      context: ./client
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+
+  posts:
+    build:
+      context: ./posts
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=development
+
+  comments:
+    build:
+      context: ./comments
+    ports:
+      - "4001:4001"
+    environment:
+      - NODE_ENV=development
+
+  event-bus:
+    build:
+      context: ./event-bus
+    ports:
+      - "4005:4005"
+    environment:
+      - NODE_ENV=development
+
+  query:
+    build:
+      context: ./query
+    ports:
+      - "4002:4002"
+    environment:
+      - NODE_ENV=development
+
+  moderation:
+    build:
+      context: ./moderation
+    ports:
+      - "4003:4003"
+    environment:
+      - NODE_ENV=development
+
+networks:
+  default:
+    driver: bridge
