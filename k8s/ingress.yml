@@ -3,14 +3,14 @@ kind: Ingress
 metadata:
   name: ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   ingressClassName: nginx
   rules:
     - http:
         paths:
-          - path: /*
-            pathType: Prefix
+          - path: /?(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: client-srv

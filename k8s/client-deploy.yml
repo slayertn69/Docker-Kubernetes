@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: client-deployment
-
 spec:
   replicas: 1
   selector:
@@ -10,25 +9,25 @@ spec:
       app: client
   template:
     metadata:
-      name: client-pod
+      labels:           
+        app: client
     spec:
       containers:
         - name: client
           image: localhost:5000/client:latest
           ports:
             - containerPort: 80
-
 ---
 apiVersion: v1
-kind: Service 
+kind: Service
 metadata:
-  name: client-srv 
+  name: client-srv
 spec:
   type: NodePort
   selector:
-    app: client
+    app: client        
   ports:
     - protocol: TCP
       port: 80
-      target: 3000
+      targetPort: 80   
       nodePort: 31515
