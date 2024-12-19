@@ -10,7 +10,7 @@ spec:
     - host: locahost
     - http:
         paths:
-          - path: /*
+          - path: /(.*)
             pathType: ImplementationSpecific
             backend:
               service:
@@ -18,7 +18,7 @@ spec:
                 port:
                   number: 80
           - path: /posts/create/
-            pathType: ImplementationSpecific
+            pathType: Prefix
             backend:
               service:
                 name: posts-clusterip-srv
@@ -32,7 +32,7 @@ spec:
                 port:
                   number: 4001
           - path: /posts
-            pathType: ImplementationSpecific
+            pathType: Prefix
             backend:
               service:
                 name: query-srv
