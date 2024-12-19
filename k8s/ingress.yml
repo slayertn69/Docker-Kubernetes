@@ -7,14 +7,34 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
+    - host: locahost
     - http:
         paths:
-          - path: /?(.*)
+          - path: /*
             pathType: ImplementationSpecific
             backend:
               service:
                 name: client-srv
                 port:
                   number: 80
-
-  
+          - path: /posts/create/
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: posts-clusterip-srv
+                port:
+                  number: 4000
+          - path: /posts/*/comments/
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: comments-srv
+                port:
+                  number: 4001
+          - path: /posts
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: query-srv
+                port:
+                  number: 4002
