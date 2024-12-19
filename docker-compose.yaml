@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  posts:
+    image: posts
+    build: ./posts
+    ports:
+      - "4000:4000"
+
+  comments:
+    image: comments
+    build: ./comments
+    ports:
+      - "4001:4001"
+
+  query:
+    image: query
+    build: ./query
+    ports:
+      - "4002:4002"
+
+  moderation:
+    image: moderation
+    build: ./moderation
+    ports:
+      - "4003:4003"
+
+  event-bus:
+    image: event-bus
+    build: ./event-bus
+    ports:
+      - "4005:4005"
+
+  client:
+    image: client
+    build: ./client
+    ports:
+      - "3000:80"
