@@ -9,7 +9,7 @@ spec:
       app: posts-clusterip
   template:
     metadata:
-      labels:           
+      labels:
         app: posts-clusterip
     spec:
       containers:
@@ -25,9 +25,9 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: posts       
+    app: posts-clusterip
   ports:
     - protocol: TCP
       port: 4000
-      targetPort: 4000   
+      targetPort: 4000
       nodePort: 31519
